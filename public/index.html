@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Freshness Detector</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="glass-container">
+        <header>
+            <h1><i class="fas fa-leaf"></i> Fruit Freshness</h1>
+            <p>AI-powered crop quality analyzer</p>
+        </header>
+
+        <main id="app-main">
+            <!-- Upload State -->
+            <div id="upload-section" class="section active">
+                <div class="drop-zone" id="drop-zone">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <p>Drag and drop fruit image here</p>
+                    <span>or</span>
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <button class="btn primary-btn" onclick="document.getElementById('file-input').click()">Browse Files</button>
+                    <div class="camera-btn-wrapper">
+                        <button class="btn secondary-btn" id="open-camera-btn">
+                            <i class="fas fa-camera"></i> Take Photo
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <p>Made with love by Sehajdeep Bhatia</p>
+                </div>
+            </div>
+
+
+            <!-- Camera State -->
+            <div id="camera-section" class="section">
+                <div class="video-container">
+                    <video id="camera-feed" autoplay playsinline></video>
+                </div>
+                <div class="camera-controls">
+                    <button class="btn primary-btn" id="capture-btn"><i class="fas fa-camera"></i> Capture</button>
+                    <button class="btn secondary-btn" id="close-camera-btn">Cancel</button>
+                </div>
+                <canvas id="camera-canvas" hidden></canvas>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-section" class="section">
+                <div class="image-preview-container">
+                    <img id="preview-image" src="" alt="Fruit Preview">
+                    <div class="scanner-line"></div>
+                </div>
+                <div class="spinner"></div>
+                <p class="loading-text">Analyzing freshness...</p>
+            </div>
+
+            <!-- Result State -->
+            <div id="result-section" class="section">
+                <div class="image-preview-container small">
+                    <img id="result-image" src="" alt="Fruit Result">
+                </div>
+                
+                <div class="result-card">
+                    <div class="badge-container">
+                        <span id="status-badge" class="badge">Fresh</span>
+                    </div>
+                    
+                    <div class="confidence-container">
+                        <div class="confidence-header">
+                            <span>Confidence</span>
+                            <span id="confidence-text">95%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div id="confidence-bar" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="reason-container">
+                        <i class="fas fa-info-circle"></i>
+                        <p id="reason-text">The fruit appears perfectly ripe with no visible blemishes or mold.</p>
+                    </div>
+                </div>
+
+                <button class="btn primary-btn reset-btn" onclick="resetApp()">
+                    <i class="fas fa-redo"></i> Try Another Fruit
+                </button>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
